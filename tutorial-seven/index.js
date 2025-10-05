@@ -15,6 +15,14 @@ app.get("/", function (req, res) {
   });
 });
 
+app.post("/create", function (req, res) {
+  fs.writeFile(`./files/${req.body.title.split(" ").join("")}.txt`,
+    req.body.details,
+    function (err) {
+      res.redirect("/");
+    });
+});
+
 app.listen(3000, function () {
   console.log("Server is running on port 3000");
 });
