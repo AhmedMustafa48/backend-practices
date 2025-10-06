@@ -33,7 +33,6 @@ app.get("/edit/:filename", function (req, res) {
 });
 
 app.post("/edit", function (req, res) {
-  console.log(req.body);
   fs.rename(
     `./files/${req.body.previous}`,
     `./files/${req.body.new}`,
