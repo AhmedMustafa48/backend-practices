@@ -18,6 +18,18 @@ app.get("/create", async (req, res) => {
   res.send(createdUser);
 });
 
+app.get("/update", async (req, res) => {
+  let updatedUser = await userModel.findOneAndUpdate(
+    { username: "proxy" },
+    { username: "proxy1" },
+    { new: true }
+  );
+
+  res.send(updatedUser);
+});
+
+
+
 
 
 app.listen(3000);
