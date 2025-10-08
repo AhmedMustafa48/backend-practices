@@ -8,6 +8,18 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
+app.get("/read", async (req, res) => {
+  let users = await userModel.find({ username: "proxy1" });
+
+  res.send(users);
+});
+
+app.get("/readAll", async (req, res) => {
+  let allUsers = await userModel.find();
+
+  res.send(allUsers);
+});
+
 app.get("/create", async (req, res) => {
   let createdUser = await userModel.create({
     name: "faisal",
@@ -28,10 +40,12 @@ app.get("/update", async (req, res) => {
   res.send(updatedUser);
 });
 
-app.get("/read", async (req, res) => {
-  let users = await userModel.find();
+app.get("/delete", async (req, res) => {
+  let deletedUser = await userModel.findOneAndDelete({ username: "jan" });
 
-  res.send(users);
+  res.send(deletedUser);
 });
+
+// findone will give you even object without array , whereas find is if object is not found then it will return empty array like []
 
 app.listen(3000);
